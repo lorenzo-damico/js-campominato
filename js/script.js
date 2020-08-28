@@ -22,3 +22,15 @@ function randomNumber(min, max) {
   var numeroCasuale = Math.floor(Math.random() * (max - min + 1)) + min;
   return numeroCasuale;
 }
+
+// 3. Creo una funzione che controlli la presenza di un numero in un array,
+//    ritornando true se presente, false se assente.
+function inArray(contenitore, num) {
+  var presente = false;
+  for (var i = 0; i < contenitore.length && presente == false; i++) {
+    if (num == contenitore[i]) {
+      presente = true;
+    }
+  }
+  return presente;
+}
