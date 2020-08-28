@@ -14,8 +14,8 @@
 // inserito un numero consentito.
 
 // 1. Creo le variabili bombe e tentativi per poter modificare i valori.
-var bombe = 16;
-var tentativi = 100;
+var bombe = 3;
+var tentativi = 10;
 
 // 2. Creo una funzione che generi un numero casuale tra un min e un max.
 function randomNumber(min, max) {
@@ -33,4 +33,23 @@ function inArray(contenitore, num) {
     }
   }
   return presente;
+}
+
+// 4. Creo l'array nel quale inserire le bombe create.
+var contenitoreBombe = [];
+console.log(contenitoreBombe);
+
+// 5. Creo un ciclo per creare le bombe.
+while (contenitoreBombe.length < bombe) {
+  var bombaCreata = randomNumber(1, tentativi);
+  console.log(bombaCreata);
+
+  // 5A. Controllo se la bomba è presente nel contenitore delle bombe.
+  var presenza = inArray(contenitoreBombe, bombaCreata);
+
+  // 5B. Se non presente, la aggiungo, altrimenti no.
+  if (presenza == false) {
+    contenitoreBombe.push(bombaCreata);
+  }
+  console.log(contenitoreBombe);
 }
