@@ -21,7 +21,7 @@
 // con difficoltà 2 => tra 1 e 50
 
 // 1. Creo le variabili bombe e tentativi per poter modificare i valori.
-var bombe = 16;
+var bombe = 3;
 // 1A. Chiedo all'utente di impostare un livello di difficoltà.
 var difficolta = parseInt(prompt("Inserisci un livello di difficoltà compreso fra 0 e 2"));
 
@@ -36,11 +36,11 @@ while (difficolta != 0 && difficolta != 1 && difficolta != 2) {
 //     Se 1 => tra 1 e 80
 //     Se 2 => tra 1 e 50
 if (difficolta == 0) {
-  var tentativi = 100;
+  var tentativi = 10;
 } else if (difficolta == 1) {
-  var tentativi = 80;
+  var tentativi = 8;
 } else {
-  var tentativi = 50;
+  var tentativi = 5;
 }
 console.log("La difficoltà impostata è: " + difficolta + ". I tentativi sono: " + tentativi);
 
@@ -95,17 +95,17 @@ while (contenitoreUtente.length < tentativi - bombe && hoPerso == false) {
   // 8A. Chiedo all'utente un numero.
   var numeroUtente = parseInt(prompt("Inserisci un numero compreso fra 1 e " + tentativi));
 
-  // 8B. Controllo che il numero sia compreso fra 1 e 100, altrimenti lo richiedo.
-  while (numeroUtente < 1 || numeroUtente > tentativi) {
-    numeroUtente = parseInt(prompt("Hai sbagliato! Inserisci un numero compreso fra 1 e " + tentativi));
-  }
-
-  // 8C. Controllo se il numero è già presente nel contenitore utente.
+  // 8B. Controllo che il numero non sia presente nel contenitore utente con una variabile.
   var presenzaUtente = inArray(contenitoreUtente, numeroUtente);
 
-  // 8D. Se già presente, lo richiedo  e rieffettuo il controllo.
-  while (presenzaUtente == true) {
-    numeroUtente = parseInt(prompt("Hai già scelto questo numero! Inserisci un numero compreso fra 1 e " + tentativi));
+  // 8C. Controllo che il numero sia compreso fra 1 e tentativi, e che non sia già
+  //     già presente nel contenitore utente.
+  while (numeroUtente < 1 || numeroUtente > tentativi || presenzaUtente == true) {
+    if (numeroUtente < 1 || numeroUtente > tentativi) {
+      numeroUtente = parseInt(prompt("Hai sbagliato! Inserisci un numero compreso fra 1 e " + tentativi));
+    } else {
+      numeroUtente = parseInt(prompt("Hai già scelto questo numero! Inserisci un numero compreso fra 1 e " + tentativi));
+    }
     presenzaUtente = inArray(contenitoreUtente, numeroUtente);
   }
 
