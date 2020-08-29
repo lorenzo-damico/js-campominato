@@ -21,7 +21,7 @@
 // con difficoltà 2 => tra 1 e 50
 
 // 1. Creo le variabili bombe e tentativi per poter modificare i valori.
-var bombe = 3;
+var bombe = 16;
 // 1A. Chiedo all'utente di impostare un livello di difficoltà.
 var difficolta = parseInt(prompt("Inserisci un livello di difficoltà compreso fra 0 e 2"));
 
@@ -36,11 +36,11 @@ while (difficolta != 0 && difficolta != 1 && difficolta != 2) {
 //     Se 1 => tra 1 e 80
 //     Se 2 => tra 1 e 50
 if (difficolta == 0) {
-  var tentativi = 10;
+  var tentativi = 100;
 } else if (difficolta == 1) {
-  var tentativi = 8;
+  var tentativi = 80;
 } else {
-  var tentativi = 5;
+  var tentativi = 50;
 }
 console.log("La difficoltà impostata è: " + difficolta + ". I tentativi sono: " + tentativi);
 
@@ -95,11 +95,11 @@ while (contenitoreUtente.length < tentativi - bombe && hoPerso == false) {
   // 8A. Chiedo all'utente un numero.
   var numeroUtente = parseInt(prompt("Inserisci un numero compreso fra 1 e " + tentativi));
 
-  // 8B. Controllo che il numero non sia presente nel contenitore utente con una variabile.
+  // 8B. Imposto una variabile booleana per controllare la presenza nel contenitore utente.
   var presenzaUtente = inArray(contenitoreUtente, numeroUtente);
 
   // 8C. Controllo che il numero sia compreso fra 1 e tentativi, e che non sia già
-  //     già presente nel contenitore utente.
+  //     presente nel contenitore utente.
   while (numeroUtente < 1 || numeroUtente > tentativi || presenzaUtente == true) {
     if (numeroUtente < 1 || numeroUtente > tentativi) {
       numeroUtente = parseInt(prompt("Hai sbagliato! Inserisci un numero compreso fra 1 e " + tentativi));
