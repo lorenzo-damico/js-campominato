@@ -100,8 +100,8 @@ while (contenitoreUtente.length < tentativi - bombe && hoPerso == false) {
 
   // 8C. Controllo che il numero sia compreso fra 1 e tentativi, e che non sia già
   //     presente nel contenitore utente.
-  while (numeroUtente < 1 || numeroUtente > tentativi || presenzaUtente == true) {
-    if (numeroUtente < 1 || numeroUtente > tentativi) {
+  while (numeroUtente < 1 || numeroUtente > tentativi || isNaN(numeroUtente) == true || presenzaUtente == true) {
+    if (numeroUtente < 1 || numeroUtente > tentativi || isNaN(numeroUtente) == true) {
       numeroUtente = parseInt(prompt("Hai sbagliato! Inserisci un numero compreso fra 1 e " + tentativi));
     } else {
       numeroUtente = parseInt(prompt("Hai già scelto questo numero! Inserisci un numero compreso fra 1 e " + tentativi));
