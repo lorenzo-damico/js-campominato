@@ -36,12 +36,16 @@ while (difficolta != 0 && difficolta != 1 && difficolta != 2) {
 //     Se 0 => tra 1 e 100
 //     Se 1 => tra 1 e 80
 //     Se 2 => tra 1 e 50
-if (difficolta == 0) {
-  var tentativi = 100;
-} else if (difficolta == 1) {
-  var tentativi = 80;
-} else {
-  var tentativi = 50;
+switch (difficolta) {
+  case 0:
+    var tentativi = 100;
+    break;
+  case 1:
+    var tentativi = 80;
+    break;
+  case 2:
+    var tentativi = 50;
+    break;
 }
 console.log("La difficoltà impostata è: " + difficolta + ". I tentativi sono: " + tentativi);
 
@@ -79,8 +83,7 @@ while (contenitoreBombe.length < bombe) {
   if (presenzaBomba == false) {
     contenitoreBombe.push(bombaCreata);
   }
-  console.log(contenitoreBombe);
-  console.log("Le bombe sono: " + contenitoreBombe);
+  console.log("Le bombe sono " + contenitoreBombe.length + ": " + contenitoreBombe);
 }
 
 // 6. Creo l'array nel quale inserire i numeri scelti dall'utente.
