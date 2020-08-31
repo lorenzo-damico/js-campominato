@@ -22,6 +22,7 @@
 
 // 1. Creo le variabili bombe e tentativi per poter modificare i valori.
 var bombe = 16;
+
 // 1A. Chiedo all'utente di impostare un livello di difficoltà.
 var difficolta = parseInt(prompt("Inserisci un livello di difficoltà compreso fra 0 e 2"));
 
@@ -78,6 +79,7 @@ while (contenitoreBombe.length < bombe) {
   if (presenzaBomba == false) {
     contenitoreBombe.push(bombaCreata);
   }
+  console.log(contenitoreBombe);
   console.log("Le bombe sono: " + contenitoreBombe);
 }
 
@@ -98,37 +100,37 @@ while (contenitoreUtente.length < tentativi - bombe && hoPerso == false) {
   // 8B. Imposto una variabile booleana per controllare la presenza nel contenitore utente.
   var presenzaUtente = inArray(contenitoreUtente, numeroUtente);
 
-  // 8C. Controllo che il numero sia compreso fra 1 e tentativi, e che non sia già
-  //     presente nel contenitore utente.
-  while (numeroUtente < 1 || numeroUtente > tentativi || isNaN(numeroUtente) == true || presenzaUtente == true) {
-    if (numeroUtente < 1 || numeroUtente > tentativi || isNaN(numeroUtente) == true) {
-      numeroUtente = parseInt(prompt("Hai sbagliato! Inserisci un numero compreso fra 1 e " + tentativi));
+  // 8C. Se il numero non è compreso fra 1 e tentativi o non è un numero, ripeto.
+  //     Se il numero è un doppione, ripeto.
+  //     Altrimenti, vado avanti.
+  if (numeroUtente < 1 || numeroUtente > tentativi || isNaN(numeroUtente)) {
+    alert("Hai inserito un valore non valido!");
+
+  } else if (presenzaUtente == true) {
+    alert("Hai già inserito questo numero!");
+
+  } else {
+    // 8C.1. Imposto una variabile booleana per controllare la presenza nel contenitore bombe.
+    var bombaColpita = inArray(contenitoreBombe, numeroUtente);
+
+    // 8C.2. Se il numero è una bomba, modifico la variabile hoPerso in true ed esco dal ciclo.
+    //       Altrimenti, inserisco il numero nel contenitore utente.
+    if (bombaColpita == true) {
+      hoPerso = true;
     } else {
-      numeroUtente = parseInt(prompt("Hai già scelto questo numero! Inserisci un numero compreso fra 1 e " + tentativi));
+      contenitoreUtente.push(numeroUtente);
+      console.log(contenitoreUtente);
     }
-    presenzaUtente = inArray(contenitoreUtente, numeroUtente);
-  }
-
-  // 8E. Aggiungo il numero all'array contenitore utente.
-  contenitoreUtente.push(numeroUtente);
-  console.log(contenitoreUtente);
-
-  // 8F. Controllo se il numero è una bomba.
-  var bombaColpita = inArray(contenitoreBombe, numeroUtente);
-
-  // 8G. Se il numero scelto è una bomba, scrivo alert hai perso,
-  //     indico il livello raggiunto, modifico la variabile hoPerso
-  //     per uscire dal ciclo.
-  if (bombaColpita == true) {
-    alert("Hai colpito una bomba! Hai perso.");
-    alert("Hai raggiunto il livello: " + contenitoreUtente.length);
-    hoPerso = true;
   }
 }
 
-// 9. Se la variabile hoPerso è ancora false, scrivo alert vittoria
-//    indicando il livello raggiunto.
-if (hoPerso == false) {
-  alert("Hai vinto! Hai evitato tutte le bombe.");
+// 8D. Se hoPerso è true, scrivo il messaggio di sconfitta e indico il punteggio raggiunto.
+//     Se hoPerso è false, scrivo messaggio di vittoria.
+if (hoPerso == true) {
+  alert("Hai colpito una bomba! Hai perso.");
   alert("Hai raggiunto il livello: " + contenitoreUtente.length);
+
+} else {
+  alert("Hai vinto! Hai evitato tutte le bombe.");
+  alert("Hai raggiunto l'ultimo livello: " + contenitoreUtente.length);
 }
